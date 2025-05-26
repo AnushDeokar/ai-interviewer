@@ -14,10 +14,10 @@ export default function DashboardPage() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="flex justify-between h-16">
               <div className="flex items-center">
-                <h1 className="text-xl font-semibold">AI Voice Interviewer</h1>
+                <h1 className="text-xl font-semibold text-gray-900">AI Voice Interviewer</h1>
               </div>
               <div className="flex items-center space-x-4">
-                <span className="text-gray-700">Welcome, {user?.email}</span>
+                <span className="text-gray-700 sm:block hidden">Welcome, {user?.email}</span>
                 <button
                   onClick={signOut}
                   className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md text-sm font-medium"
