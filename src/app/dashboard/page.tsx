@@ -1,26 +1,37 @@
-'use client'
+"use client"
 
-import { useAuth } from '@/contexts/auth-context'
-import Link from 'next/link'
-import ProtectedRoute from '@/components/protected-route'
+import Link from "next/link"
+import { useRouter } from "next/navigation"
+import { useAuth } from "@/contexts/auth-context"
+
+import ProtectedRoute from "@/components/protected-route"
 
 export default function DashboardPage() {
   const { user, signOut } = useAuth()
+  const router = useRouter()
+
+  const handleCreateInterview = () => {
+    router.push("/interview/new")
+  }
 
   return (
     <ProtectedRoute>
       <div className="min-h-screen bg-gray-50">
         <nav className="bg-white shadow">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="flex justify-between h-16">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="flex h-16 justify-between">
               <div className="flex items-center">
-                <h1 className="text-xl font-semibold text-gray-900">AI Voice Interviewer</h1>
+                <h1 className="text-xl font-semibold text-gray-900">
+                  AI Voice Interviewer
+                </h1>
               </div>
               <div className="flex items-center space-x-4">
-                <span className="text-gray-700 sm:block hidden">Welcome, {user?.email}</span>
+                <span className="hidden text-gray-700 sm:block">
+                  Welcome, {user?.email}
+                </span>
                 <button
                   onClick={signOut}
-                  className="bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded-md text-sm font-medium"
+                  className="rounded-md bg-red-600 px-4 py-2 text-sm font-medium text-white hover:bg-red-700"
                 >
                   Sign Out
                 </button>
@@ -29,34 +40,42 @@ export default function DashboardPage() {
           </div>
         </nav>
 
-        <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+        <main className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
           <div className="px-4 py-6 sm:px-0">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">Dashboard</h2>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <div className="bg-white overflow-hidden shadow rounded-lg">
+            <h2 className="mb-6 text-2xl font-bold text-gray-900">Dashboard</h2>
+
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+              <div className="overflow-hidden rounded-lg bg-white shadow">
                 <div className="p-6">
-                  <h3 className="text-lg font-medium text-gray-900">Start New Interview</h3>
-                  <p className="mt-2 text-sm text-gray-600">Begin a new coding interview session</p>
+                  <h3 className="text-lg font-medium text-gray-900">
+                    Start New Interview
+                  </h3>
+                  <p className="mt-2 text-sm text-gray-600">
+                    Begin a new coding interview session
+                  </p>
                   <div className="mt-4">
-                    <Link
-                      href="/interview/new"
-                      className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700"
+                    <button
+                      onClick={handleCreateInterview}
+                      className="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700"
                     >
                       Start Interview
-                    </Link>
+                    </button>
                   </div>
                 </div>
               </div>
 
-              <div className="bg-white overflow-hidden shadow rounded-lg">
+              <div className="overflow-hidden rounded-lg bg-white shadow">
                 <div className="p-6">
-                  <h3 className="text-lg font-medium text-gray-900">Past Sessions</h3>
-                  <p className="mt-2 text-sm text-gray-600">Review your previous interviews</p>
+                  <h3 className="text-lg font-medium text-gray-900">
+                    Past Sessions
+                  </h3>
+                  <p className="mt-2 text-sm text-gray-600">
+                    Review your previous interviews
+                  </p>
                   <div className="mt-4">
                     <Link
                       href="/sessions"
-                      className="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+                      className="inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
                     >
                       View Sessions
                     </Link>
@@ -64,14 +83,18 @@ export default function DashboardPage() {
                 </div>
               </div>
 
-              <div className="bg-white overflow-hidden shadow rounded-lg">
+              <div className="overflow-hidden rounded-lg bg-white shadow">
                 <div className="p-6">
-                  <h3 className="text-lg font-medium text-gray-900">Practice Mode</h3>
-                  <p className="mt-2 text-sm text-gray-600">Practice without evaluation</p>
+                  <h3 className="text-lg font-medium text-gray-900">
+                    Practice Mode
+                  </h3>
+                  <p className="mt-2 text-sm text-gray-600">
+                    Practice without evaluation
+                  </p>
                   <div className="mt-4">
                     <Link
                       href="/practice"
-                      className="inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
+                      className="inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50"
                     >
                       Practice
                     </Link>
